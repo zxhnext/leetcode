@@ -75,7 +75,7 @@ MinStack.prototype.getMin = function() {
 };
 ```
 
-#### 4. 复杂度分析
+#### 3. 复杂度分析
 时间复杂度，O(1)，空间复杂度O(n)
 
 ### 题解2 一个栈实现
