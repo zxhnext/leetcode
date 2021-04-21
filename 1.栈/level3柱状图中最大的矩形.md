@@ -29,6 +29,8 @@
 1. 两层循环
 2. 获取该区间内最小高度
 3. 比较当前面积与上一个面积，保留最大的
+
+#### 3. 代码实现
 ```js
 var largestRectangleArea = function(heights) {
     const len = heights.length;
@@ -43,7 +45,7 @@ var largestRectangleArea = function(heights) {
     return ans;
 };
 ```
-#### 3. 复杂度分析
+#### 4. 复杂度分析
 时间复杂度O(n^2)，空间复杂度：O(n)
 ### 题解2 暴力法(超出时间限制)
 #### 1. 问题分析
@@ -53,6 +55,8 @@ var largestRectangleArea = function(heights) {
 1. 遍历每根柱子
 2. 往左(右)遍历，直到遇到比该柱子小的柱子
 3. 比较面积，获取每次的最大值
+
+#### 3. 代码实现
 ```js
 var largestRectangleArea = function(heights) {
     const len = heights.length;
@@ -83,10 +87,10 @@ var largestRectangleArea = function(heights) {
     return res;
 }
 ```
-#### 3. 复杂度分析
+#### 4. 复杂度分析
 时间复杂度O(n^2)，空间复杂度：O(n)
 
-###  题解3 使用栈
+###  题解3 单调栈
 [官方题解](https://leetcode-cn.com/problems/largest-rectangle-in-histogram/solution/zhu-zhuang-tu-zhong-zui-da-de-ju-xing-by-leetcode-/)  
 ```js
 var largestRectangleArea = function(heights) {
@@ -124,8 +128,8 @@ var largestRectangleArea = function(heights) {
     return res;
 }
 ```
-### 题解4
-[解释单调栈解法](https://leetcode-cn.com/problems/largest-rectangle-in-histogram/solution/wo-yong-qiao-miao-de-bi-yu-jiang-dan-diao-zhan-jie/)
+### 题解4 单调栈+哨兵技巧
+[暴力解法、栈（单调栈、哨兵技巧）](https://leetcode-cn.com/problems/largest-rectangle-in-histogram/solution/bao-li-jie-fa-zhan-by-liweiwei1419/)
 ```js
 const largestRectangleArea = (heights) => {
     let maxArea = 0
@@ -147,4 +151,4 @@ const largestRectangleArea = (heights) => {
 
 
 ## 高赞题解
-[暴力解法、栈（单调栈、哨兵技巧）](https://leetcode-cn.com/problems/largest-rectangle-in-histogram/solution/bao-li-jie-fa-zhan-by-liweiwei1419/)
+[解释单调栈解法](https://leetcode-cn.com/problems/largest-rectangle-in-histogram/solution/wo-yong-qiao-miao-de-bi-yu-jiang-dan-diao-zhan-jie/)
