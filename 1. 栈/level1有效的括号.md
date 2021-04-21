@@ -1,10 +1,45 @@
-
-## 原题地址
-[有效的括号](https://leetcode-cn.com/problems/valid-parentheses/)
+## 题目描述
+原题地址: [有效的括号](https://leetcode-cn.com/problems/valid-parentheses/)
 
 难度：简单
+
+给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串 s ，判断字符串是否有效。
+
+有效字符串需满足：
+> 1. 左括号必须用相同类型的右括号闭合。
+> 2. 左括号必须以正确的顺序闭合。
+ 
+
+示例 1：
+```
+输入：s = "()"
+输出：true
+```
+示例 2：
+```
+输入：s = "()[]{}"
+输出：true
+```
+示例 3：
+```
+输入：s = "(]"
+输出：false
+```
+示例 4：
+```
+输入：s = "([)]"
+输出：false
+```
+示例 5：
+```
+输入：s = "{[]}"
+输出：true
+```
+
+提示：
+> 1 <= s.length <= 10^4  
+> s 仅由括号 '()[]{}' 组成
 ## 题解
-### 题解1 使用栈
 #### 1. 问题分析
 对于没有闭合的左括号而言，越靠后的左括号，对应的右括号越靠前`{[]}`，满足后进先出，考虑用栈  
 
@@ -13,6 +48,7 @@
 2. 扫描字符串，遇左括号入栈，遇到和栈顶括号类型匹配的右括号就出栈，类型不匹配直接判定为不合法。 
 3. 最后栈空了就合法，否则不合法
 
+#### 3. 代码实现
 ```js
 var isValid = function(s) {
     if(s.length % 2 === 1) { return false; }
@@ -38,7 +74,7 @@ var isValid = function(s) {
 };
 ```
 
-#### 3.使用字典优化
+#### 4. 使用字典优化
 使用字典优化逻辑判断
 
 ```js
@@ -65,7 +101,7 @@ var isValid = function(s) {
 	return stack.length === 0
 };
 ```
-#### 4. 复杂度分析
+#### 5. 复杂度分析
 时间复杂度O(n)，空间复杂度：O(n)
 ## 高赞题解
 [官方题解](https://leetcode-cn.com/problems/valid-parentheses/solution/you-xiao-de-gua-hao-by-leetcode-solution/)  

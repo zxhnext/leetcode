@@ -1,7 +1,39 @@
-## 原题地址
-[最小栈](https://leetcode-cn.com/problems/min-stack/)
+## 题目描述
+原题地址：[最小栈](https://leetcode-cn.com/problems/min-stack/)
 
 难度：简单
+
+设计一个支持 push ，pop ，top 操作，并能在常数时间内检索到最小元素的栈。
+>- push(x) —— 将元素 x 推入栈中。
+>- pop() —— 删除栈顶的元素。
+>- top() —— 获取栈顶元素。
+>- getMin() —— 检索栈中的最小元素。
+ 
+
+示例:
+```
+输入：
+["MinStack","push","push","push","getMin","pop","top","getMin"]
+[[],[-2],[0],[-3],[],[],[],[]]
+
+输出：
+[null,null,null,null,-3,null,0,-2]
+
+解释：
+MinStack minStack = new MinStack();
+minStack.push(-2);
+minStack.push(0);
+minStack.push(-3);
+minStack.getMin();   --> 返回 -3.
+minStack.pop();
+minStack.top();      --> 返回 0.
+minStack.getMin();   --> 返回 -2.
+```
+
+提示：
+
+pop、top 和 getMin 操作总是在 非空栈 上调用。
+
 
 ## 题解
 ### 题解1 辅助栈
@@ -50,6 +82,8 @@ stack  minStack
 1. 建两个栈
 2. 保持两个栈操作同步，入栈时将该栈最小值保存在最小栈中，出栈时最小栈同步出栈。
 3. 由于栈顶保存的永远是最小值，所以当入栈时只需要比较入栈值与最小栈栈顶值即可得出最小值
+
+#### 3. 代码实现
 ```js
 var MinStack = function() {
     this.stack = []
@@ -75,7 +109,7 @@ MinStack.prototype.getMin = function() {
 };
 ```
 
-#### 3. 复杂度分析
+#### 4. 复杂度分析
 时间复杂度，O(1)，空间复杂度O(n)
 
 ### 题解2 一个栈实现
