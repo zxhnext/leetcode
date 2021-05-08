@@ -130,6 +130,7 @@ var largestRectangleArea = function(heights) {
 ```
 ### 题解4 单调栈+哨兵技巧
 [暴力解法、栈（单调栈、哨兵技巧）](https://leetcode-cn.com/problems/largest-rectangle-in-histogram/solution/bao-li-jie-fa-zhan-by-liweiwei1419/)
+
 ```js
 const largestRectangleArea = (heights) => {
     let maxArea = 0
@@ -151,4 +152,6 @@ const largestRectangleArea = (heights) => {
 
 
 ## 高赞题解
-[解释单调栈解法](https://leetcode-cn.com/problems/largest-rectangle-in-histogram/solution/wo-yong-qiao-miao-de-bi-yu-jiang-dan-diao-zhan-jie/)
+[解释单调栈解法](https://leetcode-cn.com/problems/largest-rectangle-in-histogram/solution/wo-yong-qiao-miao-de-bi-yu-jiang-dan-diao-zhan-jie/)  
+
+这里有单调栈部分的题：[暴力解法、栈（单调栈、哨兵技巧）](https://leetcode-cn.com/problems/largest-rectangle-in-histogram/solution/bao-li-jie-fa-zhan-by-liweiwei1419/)  
