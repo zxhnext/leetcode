@@ -27,11 +27,12 @@
 
 
 ## 题解
-### 题解1 单调双端队列
+### 题解1 单调队列
 #### 1. 问题分析
-1. 未形成窗口时，遍历给定数组中的元素，如果队列不为空且当前考察元素大于等于队尾元素，则将队尾元素移除。直到，队列为空或当前考察元素小于新的队尾元素；  
-2. 当队首元素的下标小于滑动窗口左侧边界left时，表示队首元素已经不再滑动窗口内，因此将其从队首移除。  
-3. 由于数组下标从0开始，因此当窗口右边界right+1大于等于窗口大小k时，意味着窗口形成。此时，队首元素就是该窗口内的最大值  
+1. 遍历给定数组中的元素，如果队列不为空且当前考察元素大于等于队尾元素，则将队尾元素移除。直到，队列为空或当前考察元素小于新的队尾元素；
+2. 当队首元素的下标小于滑动窗口左侧边界left时，表示队首元素已经不再滑动窗口内，因此将其从队首移除。
+3. 由于数组下标从0开始，因此当窗口右边界right+1大于等于窗口大小k时，意味着窗口形成。此时，队首元素就是该窗口内的最大值
+
 
 #### 2. 代码实现
 ```js
@@ -39,7 +40,10 @@ var maxSlidingWindow = function(nums, k) {
     if (nums.length === 0 || k === 0) return nums;
     const queue = [];
     const result = [];
+    // 遍历数组中元素，right表示滑动窗口右边界
     for(let right = 0; right < nums.length; right++) {
+        // 如果队列不为空且当前考察元素大于等于队尾元素，则将队尾元素移除。
+        // 直到，队列为空或当前考察元素小于新的队尾元素
         while (queue.length && nums[right] >= nums[queue[queue.length - 1]]) {
             queue.pop();
         }
@@ -64,6 +68,8 @@ var maxSlidingWindow = function(nums, k) {
     return result;
 };
 ```
+
+可以将 “未形成窗口” 和 “形成窗口后” 两个阶段拆分到两个循环里实现。代码虽变长，但减少了冗余的判断操作
 
 ```js
 var maxSlidingWindow = function(nums, k) {
@@ -94,9 +100,9 @@ var maxSlidingWindow = function(nums, k) {
 };
 ```
 
-
 #### 3. 复杂度分析
 时间复杂度O(n)，空间复杂度：O(n)
+
 ## 高赞题解
 [动画演示 单调队列 剑指 Offer 59 - I. 滑动窗口的最大值](https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/dong-hua-yan-shi-dan-diao-dui-lie-jian-z-unpy/)  
 [剑指 Offer 59 - I. 滑动窗口的最大值（单调队列，清晰图解）](https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/mian-shi-ti-59-i-hua-dong-chuang-kou-de-zui-da-1-6/)  

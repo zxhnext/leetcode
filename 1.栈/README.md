@@ -356,6 +356,10 @@ var isPalindrome = function(x) {
 
 **难度：中等**
 
+### 每日温度
+原题地址：[每日温度](https://leetcode-cn.com/problems/daily-temperatures/)
+
+**难度：中等**
 ### 柱状图中最大的矩形
 原题地址:[柱状图中最大的矩形](https://leetcode-cn.com/problems/largest-rectangle-in-histogram/)
 
