@@ -30,7 +30,13 @@
 
 ## 题解
 #### 1. 解题思路 排序 + 双指针
+如果我们使用三重循环枚举，时间复杂度为O(N^3)。这里的关键是怎么降低重复。
 
+我们首先将数组排序，这样可以保证(a,b,c) 这个顺序会被枚举到，而 (b,a,c)、(c,b,a) 等等这些不会，这样就减少了重复
+
+另外，对于每一重循环而言，相邻两次枚举的元素不能相同，否则也会造成重复。如[1, 2, 2, 3, 4],所以遇到这种情况时，我们需要跳过。
+
+遍历一次，以i + 1为左子针，length - 1为右指针，向中间合拢，遇到重复元素跳过
 #### 2. 代码实现
 ```js
 var threeSum = function(nums) {
@@ -43,22 +49,24 @@ var threeSum = function(nums) {
     if (nums[0] <= 0 && nums[size - 1] >= 0) {
         let i = 0;
         while (i < size - 2) {
-        if (nums[i] > 0) break; // 最左侧大于0，无解
-        let first = i + 1;
-        let last = size - 1;
-        while (first < last) {
-            if (nums[i] * nums[last] > 0) break; // 三数同符号，无解
-            let sum = nums[i] + nums[first] + nums[last];
-            if (sum === 0) {
-                res.push([nums[i], nums[first], nums[last]]);
+            if (nums[i] > 0) break; // 最左侧大于0，无解
+            let first = i + 1; // 左指针
+            let last = size - 1; // 右指针
+            while (first < last) {
+                if (nums[i] * nums[last] > 0) break; // 三数同符号，无解
+                let sum = nums[i] + nums[first] + nums[last];
+                if (sum === 0) {
+                    res.push([nums[i], nums[first], nums[last]]);
+                }
+                if (sum <= 0) {
+                    // 负数过小，first右移
+                    while (nums[first] === nums[++first]) {} // 重复值跳过
+                } else {
+                    // 正数过大，last左移
+                    while (nums[last] === nums[--last]) {} // 重复值跳过
+                }
             }
-            if (sum <= 0) {
-                // 负数过小，first右移
-                while (nums[first] === nums[++first]) {} // 重复值跳过
-            } else {
-                while (nums[last] === nums[--last]) {} // 重复值跳过
-            }
-        }
+            // 重复值跳过
             while (nums[i] === nums[++i]) {}
         }
     }
@@ -67,7 +75,7 @@ var threeSum = function(nums) {
 ```
 
 #### 3. 复杂度分析
-- 时间复杂度：O(N^2)O，其中 N 是数组 nums 的长度。
+- 时间复杂度：O(N^2)，其中 N 是数组 nums 的长度。
 - 空间复杂度：O(logN)。我们忽略存储答案的空间，额外的排序的空间复杂度为 O(logN)。然而我们修改了输入的数组 nums，在实际情况下不一定允许，因此也可以看成使用了一个额外的数组存储了 nums 的副本并进行排序，空间复杂度为 O(N)。
 
 

@@ -1,6 +1,6 @@
 ## 题目描述
 
-原题地址：[爬楼梯](https://leetcode-cn.com/problems/climbing-stairs/?utm_source=LCUS&utm_medium=ip_redirect&utm_campaign=transfer2china)
+原题地址：[爬楼梯](https://leetcode-cn.com/problems/climbing-stairs/)
 
 题目难度：简单
 
@@ -44,16 +44,15 @@
 #### 2. 代码实现
 ```js
 var climbStairs = function(n) {
-    if (n <= 2) return n;
-    let f1 = 1;
-    let f2 = 2;
-    let f3 = 3;
-    for (let i = 1; i < n - 1; i++) {
-        f3 = f1 + f2;
-        f1 = f2;
-        f2 = f3;
+    if(n < 2) { return 1 }
+    let dp0 = 1;
+    let dp1 = 1;
+    for(let i = 2; i <= n; i++) {
+        const temp = dp0;
+        dp0 = dp1;
+        dp1 = dp1 + temp;
     }
-    return f3;
+    return dp1;
 };
 ```
 

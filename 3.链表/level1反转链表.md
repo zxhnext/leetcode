@@ -61,7 +61,7 @@ var reverseList = function(head) {
 
 ### 解法2 递归法
 #### 1. 解题思路
-1. 使用递归函数，一直递归到链表的最后一个结点，该结点就是反转后的头结点，记作 ret.
+1. 使用递归函数，一直递归到链表的最后一个结点，该结点就是反转后的头结点。
 2. 此后，每次函数在返回的过程中，让当前结点的下一个结点的 next 指针指向当前节点。
 3. 同时让当前结点的 next 指针指向 NULL，从而实现从链表尾部开始的局部反转
 4. 当递归函数全部出栈后，链表反转完成。
@@ -69,15 +69,13 @@ var reverseList = function(head) {
 #### 2. 代码实现
 ```js
 var reverseList = function(head) {
-    let prev = null;
-    let curr = head;
-    while (curr) {
-        const next = curr.next;
-        curr.next = prev;
-        prev = curr;
-        curr = next;
+    if (head == null || head.next == null) {
+        return head;
     }
-    return prev;
+    const newHead = reverseList(head.next);
+    head.next.next = head;
+    head.next = null;
+    return newHead;
 };
 ```
 
