@@ -47,15 +47,14 @@
 #### 2. 代码实现
 ```js
 var twoSum = function(nums, target) {
-    let numObj = {}
-    let twoNum
-    let len = nums.length
-    for(let i=0; i<len; i++) {
-        twoNum = target-nums[i]
-        if(numObj[twoNum] === undefined) {
-            numObj[nums[i]] = i
+    const map = new Map()
+    for(let i = 0; i < nums.length; i+=1) {
+        const n = nums[i]
+        const n2 = target - n
+        if(map.has(n2)) {
+            return [map.get(n2), i]
         } else {
-            return [numObj[twoNum], i]
+            map.set(n, i)
         }
     }
 };

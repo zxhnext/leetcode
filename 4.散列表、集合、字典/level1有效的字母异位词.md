@@ -43,7 +43,7 @@ var isAnagram = function(s, t) {
 
 ### 题解2 hash表
 #### 1. 解题思路
-维护一个hash表table，遍历字符串s,记录每个字符的频次，然后遍历t,减去对应字母的频次，如果出现table[i]<0，则说明 t 包含一个不在 s 中的额外字符，返回 false 即可
+维护一个26位hash表table，初始每项值都为0，遍历字符串s,记录每个字符的频次，然后遍历t,减去对应字母的频次，如果出现table[i]<0，则说明 t 包含一个不在 s 中的额外字符，返回 false 即可
 
 #### 2. 代码实现
 ```js
@@ -64,6 +64,11 @@ var isAnagram = function(s, t) {
     return true;
 };
 ```
+
+#### 3. 复杂度分析
+时间复杂度：O(n)，其中 n 为 s 的长度。
+
+空间复杂度：O(S)，其中 S 为字符集大小，此处 S=26
 
 ## 高赞题解
 [画解算法：242. 有效的字母异位词](https://leetcode-cn.com/problems/valid-anagram/solution/hua-jie-suan-fa-242-you-xiao-de-zi-mu-yi-wei-ci-by/)
