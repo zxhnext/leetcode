@@ -278,23 +278,28 @@ function palindromeChecker(aString) {
 
 **难度：简单**
 
+题解：[最近的请求次数(队列实现)](https://leetcode-cn.com/problems/number-of-recent-calls/solution/zui-jin-de-qing-qiu-ci-shu-dui-lie-shi-x-leoj/)
+
 ### [用队列实现栈](https://leetcode-cn.com/problems/implement-stack-using-queues/)
 
 **难度：简单**
 
+题解：[用队列实现栈(两个队列和一个队列实现)](https://leetcode-cn.com/problems/implement-stack-using-queues/solution/yong-dui-lie-shi-xian-zhan-liang-ge-dui-l1n1c/)
 
 ### [设计循环队列](https://leetcode-cn.com/problems/design-circular-queue/)
 
 **难度：中等**
 
+题解：[设计循环队列(数组实现)](https://leetcode-cn.com/problems/design-circular-queue/solution/she-ji-xun-huan-dui-lie-shu-zu-shi-xian-7125y/)
+
 ### [设计循环双端队列](https://leetcode-cn.com/problems/design-circular-deque/?utm_source=LCUS&utm_medium=ip_redirect&utm_campaign=transfer2china)
 
 **难度：中等**
+
+题解：[实现双端队列(对象实现)](https://leetcode-cn.com/problems/design-circular-deque/solution/shi-xian-shuang-duan-dui-lie-dui-xiang-s-6tqd/)
 
 ### [滑动窗口最大值](https://leetcode-cn.com/problems/sliding-window-maximum/)
 
 **难度：困难**
 
-以上题解请参考：[leetcode刷题之路](https://github.com/zxhnext/leetcode/tree/master/2.%E9%98%9F%E5%88%97)
-
-持续更新ing...
+题解：[滑动窗口最大值(单调队列)](https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/hua-dong-chuang-kou-zui-da-zhi-dan-diao-xmmiv/)

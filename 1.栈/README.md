@@ -3,8 +3,7 @@
 ## 1. 什么是栈
 栈是一种遵从后进先出（LIFO）原则的有序集合。新添加或待删除的元素都保存在栈的同一端，称作栈顶，另一端就叫栈底。在栈里，新元素都靠近栈顶，旧元素都接近栈底
 
-如下图所示：  
-
+如下图所示：
 ![](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0ae1788c53d3493c8c1581f1cf6f605e~tplv-k3u1fbpfcp-zoom-1.image)
 
 ## 2. 模拟一个栈
@@ -334,21 +333,28 @@ var isPalindrome = function(x) {
 
 **难度：简单**
 
+题解：[有效的括号(栈+字典优化)](https://leetcode-cn.com/problems/valid-parentheses/solution/you-xiao-de-gua-hao-zhan-zi-dian-you-hua-7j3c/)
 
 ### 最小栈
 原题地址：[最小栈](https://leetcode-cn.com/problems/min-stack/)
 
 **难度：简单**
 
+题解：[最小栈](https://leetcode-cn.com/problems/min-stack/solution/zui-xiao-zhan-by-zxhnext-huxz/)
+
 ### 用栈实现队列
 原题地址：[用栈实现队列](https://leetcode-cn.com/problems/implement-queue-using-stacks/)
 
 **难度：简单**
 
+题解：[用栈实现队列](https://leetcode-cn.com/problems/implement-queue-using-stacks/solution/yong-zhan-shi-xian-dui-lie-by-zxhnext-sjqi/)
+
 ### 用两个栈实现队列
 原题地址：[用两个栈实现队列](https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/)
 
 **难度：简单**
+
+题解：[用两个栈实现队列](https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/solution/yong-liang-ge-zhan-shi-xian-dui-lie-by-z-x5sh/)
 
 ### 二叉树的前序遍历
 
@@ -356,18 +362,23 @@ var isPalindrome = function(x) {
 
 **难度：中等**
 
+题解：[二叉树的前序遍历(栈实现)](https://leetcode-cn.com/problems/binary-tree-preorder-traversal/solution/er-cha-shu-de-qian-xu-bian-li-zhan-shi-x-ea78/)
+
 ### 每日温度
 原题地址：[每日温度](https://leetcode-cn.com/problems/daily-temperatures/)
 
 **难度：中等**
+
 ### 柱状图中最大的矩形
 原题地址:[柱状图中最大的矩形](https://leetcode-cn.com/problems/largest-rectangle-in-histogram/)
 
 **难度：困难**
+
+题解：[柱状图中最大的矩形(单调栈+哨兵技巧)](https://leetcode-cn.com/problems/largest-rectangle-in-histogram/solution/zhu-zhuang-tu-zhong-zui-da-de-ju-xing-da-cepn/)
 
 ### 接雨水
 原题地址: [接雨水](https://leetcode-cn.com/problems/trapping-rain-water/)
 
 **难度：困难**
 
-
+题解：[接雨水(单调栈解法)](https://leetcode-cn.com/problems/trapping-rain-water/solution/jie-yu-shui-dan-diao-zhan-jie-fa-by-zxhn-uznx/)

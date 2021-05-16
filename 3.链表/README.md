@@ -102,6 +102,7 @@ class LinkedList {
         this.count++
     }
     
+    // 返回链表中特定位置的元素
     getElementAt(index) {
         if (index >= 0 && index <= this.count) {
             let node = this.head
@@ -241,7 +242,6 @@ class DoublyLinkedList extends LinkedList {
             this.head = node;
             this.tail = node; // NEW
         } else {
-            // attach to the tail node // NEW
             this.tail.next = node;
             node.prev = this.tail;
             this.tail = node;
@@ -254,7 +254,8 @@ class DoublyLinkedList extends LinkedList {
         if (index >= 0 && index <= this.count) {
             const node = new DoublyNode(element); 
             let current = this.head;
-            if (index === 0) {
+            if (index === 0) { // 在头部插入
+                //  如果双向链表为空，head 和 tail 都指向这个新节点
                 if (this.head == null) {
                     this.head = node;
                     this.tail = node;
@@ -263,12 +264,12 @@ class DoublyLinkedList extends LinkedList {
                     current.prev = node;
                     this.head = node;
                 }
-            } else if (index === this.count) {
+            } else if (index === this.count) { // 尾部插入
                 current = this.tail;
                 current.next = node;
                 node.prev = current;
                 this.tail = node;
-            } else {
+            } else { // 中间插入
                 const previous = this.getElementAt(index - 1);
                 current = previous.next;
                 node.next = current;
@@ -286,7 +287,7 @@ class DoublyLinkedList extends LinkedList {
     removeAt(index) {
         if (index >= 0 && index < this.count) {
             let current = this.head; 
-            if (index === 0) {
+            if (index === 0) { // 删除头部
                 this.head = current.next;
                 // 如果只有一项，更新tail
                 if (this.count === 1) {
@@ -294,11 +295,11 @@ class DoublyLinkedList extends LinkedList {
                 } else {
                     this.head.prev = undefined;
                 }
-            } else if (index === this.count - 1) {
+            } else if (index === this.count - 1) { // 删除尾部
                 current = this.tail;
                 this.tail = current.prev;
                 this.tail.next = undefined;
-            } else {
+            } else { // 删除中间
                 current = this.getElementAt(index);
                 const previous = current.prev;
                 // 将previous与current的下一项链接起来——跳过current 
@@ -312,6 +313,18 @@ class DoublyLinkedList extends LinkedList {
     }
 }
 ```
+
+起点插入新元素：
+![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/34df9d8956794dc8b095b4e64252ada1~tplv-k3u1fbpfcp-watermark.image)
+
+尾部插入元素：
+
+![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/839b4d48eb4d4fb8a3e6010a1e41db82~tplv-k3u1fbpfcp-watermark.image)
+
+中间插入元素：
+![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6f5839ce2339418a87c226b97e0efb0f~tplv-k3u1fbpfcp-watermark.image)
+
+
 
 ## 5. 循环链表
 **循环链表**可以像链表一样只有单向引用，也可以像双向链表一样有双向引用。循环链表和链表之间唯一的区别在于，最后一个元素指向下一个元素的指针(tail.next)不是引用undefined，而是指向第一个元素(head)
@@ -337,7 +350,7 @@ class CircularLinkedList extends LinkedList {
             current = this.getElementAt(this.size() - 1);
             current.next = node;
         }
-        // set node.next to head - to have circular list
+        // 指向头部
         node.next = this.head;
         this.count++;
     }
@@ -346,19 +359,17 @@ class CircularLinkedList extends LinkedList {
         if (index >= 0 && index <= this.count) {
             const node = new Node(element);
             let current = this.head;
-            if (index === 0) {
-                if (this.head == null) {
-                    // if no node  in list
+            if (index === 0) { // 头部插入
+                if (this.head == null) { // 链表为空
                     this.head = node;
                     node.next = this.head;
                 } else {
                     node.next = current;
                     current = this.getElementAt(this.size());
-                    // update last element
                     this.head = node;
                     current.next = this.head;
                 }
-            } else {
+            } else { // 其余位置插入
                 const previous = this.getElementAt(index - 1);
                 node.next = previous.next;
                 previous.next = node;
@@ -373,7 +384,7 @@ class CircularLinkedList extends LinkedList {
         if (index >= 0 && index < this.count) {
             let current = this.head;
             if (index === 0) {
-                if (this.size() === 1) {
+                if (this.size() === 1) { // 只有一个元素情况
                     this.head = undefined;
                 } else {
                     const removed = this.head;
@@ -382,8 +393,7 @@ class CircularLinkedList extends LinkedList {
                     current.next = this.head;
                     current = removed;
                 }
-            } else {
-                // no need to update last element for circular list
+             } else {
                 const previous = this.getElementAt(index - 1);
                 current = previous.next;
                 previous.next = current.next;
@@ -395,6 +405,12 @@ class CircularLinkedList extends LinkedList {
     }
 }
 ```
+
+链表为空时头部插入
+![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e84c5196eae44289b51b4782b96a8907~tplv-k3u1fbpfcp-watermark.image)
+
+链表不为空时头部插入
+![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b8d8b2d1fbad47838c66b3eed16828a9~tplv-k3u1fbpfcp-watermark.image)
 
 ## 6. 有序链表
 **有序链表**是指保持元素有序的链表结构。除了使用排序算法之外，我们还可以将元素插入到正确的位置来保证链表的有序性
@@ -413,7 +429,9 @@ function defaultCompare(a, b) {
   }
   return a < b ? Compare.LESS_THAN : Compare.BIGGER_THAN;
 }
+```
 
+```js
 class SortedLinkedList extends LinkedList {
     constructor(compareFn = defaultCompare) {
         super();
@@ -436,7 +454,8 @@ class SortedLinkedList extends LinkedList {
         const pos = this.getIndexNextSortedElement(element);
         return super.insert(element, pos);
     }
-
+    
+    // 获取插入位置
     getIndexNextSortedElement(element) {
         let current = this.head;
         let i = 0;
@@ -452,7 +471,8 @@ class SortedLinkedList extends LinkedList {
 }
 ```
 
-## 7. 使用链表创建栈结构
+## 7. 使用双向链表创建栈结构
+之所以使用双向链表而不是链表，是因为对栈来说，我们会向链表尾部添加元素，也会从链表尾部移除元素。DoublyLinkedList 类有列表最后一个元素的引用，无须迭代整个链表的元素就能获取它。双向链表可以直接获取头尾的元素，减少过程消耗，它的时间复杂度和原始的 Stack 实现相同，为 O(1)。
 ```js
 class StackLinkedList {
     constructor() {
@@ -625,119 +645,47 @@ var deleteNode = function(node) {
 
 **难度：简单**
 
-解题思路
-- 反转两个节点： 将n+1的next指向n
-- 反转多个节点：双指针遍历链表，重复上述操作
-
-解题步骤
-- 双指针一前一后遍历链表
-- 反转双指针
-
-```js
-var reverseList = function(head) {
-    let p1 = head;
-    let p2 = null;
-    while(p1) {
-        const tmp = p1.next
-        p1.next = p2
-        p2 = p1
-        p1 = tmp
-    }
-    return p2
-};
-```
+题解：[反转链表(递归法+迭代法)](https://leetcode-cn.com/problems/reverse-linked-list/solution/fan-zhuan-lian-biao-di-gui-fa-die-dai-fa-41ee/)
 
 ### [环形链表](https://leetcode-cn.com/problems/linked-list-cycle/) 
 
 **难度：简单**
 
-解题思路：
-1. 两个人在圆形操场上的起点同时起跑，速度快的人一定会超过速度慢的人一圈。
-2. 用一块一慢两个指针遍历链表，如果指针能够相逢，那么链表就有圈。
-
-解题步骤：
-1. 用一块一慢两个指针遍历链表，如果指针能够相逢，就返回true
-2. 遍历结束后，还没有相逢就返回false
-
-时间复杂度O(n),空间复杂度O(1)
-
-```js
-var hasCycle = function(head) {
-    let p1 = head;
-    let p2 = head;
-    while(p1 && p2 && p2.next) {
-        p1 = p1.next
-        p2 = p2.next.next
-        if(p1 === p2) {
-            return true;
-        }
-    }
-    return false;
-};
-```
+题解：[环形链表(快慢指针)](https://leetcode-cn.com/problems/linked-list-cycle/solution/huan-xing-lian-biao-kuai-man-zhi-zhen-by-zf1b/)
 
 ### [删除排序链表中的重复元素](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/)
 
 **难度：简单**
 
-解题思路：
-1. 因为链表是有序的，所以重复元素一定相邻。
-2. 遍历链表,如果发现当前元素和下个元素值相同,就删除下个元素值
-
-解题步骤：
-1. 遍历链表，如果发现当前元素和下个元素值相同，就删除下个元素值
-2. 遍历结束后，返回原链表的头部
-
-时间复杂度O(n), 空间复杂度O(1)
-
-```js
-var deleteDuplicates = function(head) {
-    let p = head;
-    while(p && p.next) {
-        if(p.val === p.next.val) {
-            p.next = p.next.next;
-        } else {
-            p = p.next;
-        }
-    }
-    return head;
-};
-```
+题解：[删除排序链表中的重复元素](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/solution/shan-chu-pai-xu-lian-biao-zhong-de-zhong-hdk4/)
 
 ### [两数相加](https://leetcode-cn.com/problems/add-two-numbers/)
 
 **难度：中等**
 
-解题步骤：  
-1. 新建一个空链表  
-2. 遍历被相加的两个链表，模拟相加操作，将个位数追加到新链表上，将十位数留到下一位去相加
-
-```js
-var addTwoNumbers = function(l1, l2) {
-    const l3 = new ListNode(0)
-    let p1 = l1;
-    let p2 = l2;
-    let p3 = l3;
-    let carry = 0;
-    while(p1 || p2) {
-        const v1 = p1 ? p1.val : 0;
-        const v2 = p2 ? p2.val : 0;
-        const val = v1 + v2 + carry;
-        carry = Math.floor(val / 10);
-        p3.next = new ListNode(val % 10);
-        if(p1) p1 = p1.next
-        if(p2) p2 = p2.next
-        p3 = p3.next;
-    }
-    if(carry) {
-        p3.next = new ListNode(carry);
-    }
-    return l3.next;
-};
-```
+题解：[两数相加](https://leetcode-cn.com/problems/add-two-numbers/solution/liang-shu-xiang-jia-by-zxhnext-ixs1/)
 
 ## 11. 双指针问题
-[盛水最多的容器](https://leetcode-cn.com/problems/container-with-most-water/)  
-[移动0](https://leetcode-cn.com/problems/move-zeroes/)     
-[爬楼梯](https://leetcode.com/problems/climbing-stairs/)  
-[(高频老题）三数之和](https://leetcode-cn.com/problems/3sum/)  
+### [爬楼梯](https://leetcode.com/problems/climbing-stairs/)  
+
+**难度：简单**
+
+题解：[爬楼梯(双指针)](https://leetcode-cn.com/problems/climbing-stairs/solution/pa-lou-ti-shuang-zhi-zhen-by-zxhnext-f075/)
+
+### [移动0](https://leetcode-cn.com/problems/move-zeroes/)   
+
+**难度：简单**
+
+题解：[移动零(双指针)](https://leetcode-cn.com/problems/move-zeroes/solution/yi-dong-ling-shuang-zhi-zhen-by-zxhnext-t27s/)
+
+### [盛水最多的容器](https://leetcode-cn.com/problems/container-with-most-water/)  
+
+**难度：中等**
+
+题解：[盛水最多的容器(双指针)](https://leetcode-cn.com/problems/container-with-most-water/solution/sheng-shui-zui-duo-de-rong-qi-shuang-zhi-lhsn/)
+
+### [(高频老题）三数之和](https://leetcode-cn.com/problems/3sum/)  
+
+**难度：中等**
+
+题解：[三数之和(排序+双指针)](https://leetcode-cn.com/problems/3sum/solution/san-shu-zhi-he-pai-xu-shuang-zhi-zhen-by-dkq7/)
