@@ -1,0 +1,90 @@
+## 题目描述
+
+原题地址：[环形链表](https://leetcode-cn.com/problems/linked-list-cycle/)
+
+难度：简单
+
+给定一个链表，判断链表中是否有环。
+
+如果链表中有某个节点，可以通过连续跟踪 next 指针再次到达，则链表中存在环。 为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。注意：pos 不作为参数进行传递，仅仅是为了标识链表的实际情况。
+
+如果链表中存在环，则返回 true 。 否则，返回 false 。
+
+进阶：
+
+你能用 O(1)（即，常量）内存解决此问题吗？
+
+示例 1：
+![](./img/circularlinkedlist.png)
+```
+输入：head = [3,2,0,-4], pos = 1
+输出：true
+解释：链表中有一个环，其尾部连接到第二个节点。
+```
+
+示例 2：
+![](./img/circularlinkedlist_test2.png)
+```
+输入：head = [1,2], pos = 0
+输出：true
+解释：链表中有一个环，其尾部连接到第一个节点。
+```
+
+示例 3：
+```
+输入：head = [1], pos = -1
+输出：false
+解释：链表中没有环。
+```
+
+提示：
+- 链表中节点的数目范围是 [0, 10^4]
+- -10^5 <= Node.val <= 10^5
+- pos 为 -1 或者链表中的一个 有效索引 。
+
+## 题解
+#### 解题思路 快慢指针
+
+1. 两个人在圆形操场上的起点同时起跑，速度快的人一定会超过速度慢的人一圈。
+2. 用一块一慢两个指针遍历链表，如果指针能够相逢，那么链表就有圈。
+
+3. 用一块一慢两个指针遍历链表，如果指针能够相逢，就返回true
+4. 遍历结束后，还没有相逢就返回false
+
+#### 代码实现
+```js
+var hasCycle = function(head) {
+    let slow = head;
+    let fast = head;
+    while(fast && fast.next) {
+        slow = slow.next
+        fast = fast.next.next
+        if(slow === fast) {
+            return true;
+        }
+    }
+    return false;
+};
+```
+
+**ts版**
+```ts
+function hasCycle(head: ListNode | null): boolean {
+    let slow = head;
+    let fast = head;
+    while (fast && fast.next) {
+        slow = slow.next;
+        fast = fast.next.next;
+        if (slow === fast) {
+            return true;
+        }
+    }
+    return false;
+};
+```
+
+#### 复杂度分析
+时间复杂度O(n),空间复杂度O(1)
+
+## 高赞题解
+[官方题解](https://leetcode-cn.com/problems/linked-list-cycle/solution/huan-xing-lian-biao-by-leetcode-solution/)  
